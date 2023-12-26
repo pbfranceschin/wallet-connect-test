@@ -3452,7 +3452,7 @@
     "@walletconnect/utils" "2.10.6"
     events "^3.3.0"
 
-"@walletconnect/sign-client@2.11.0":
+"@walletconnect/sign-client@2.11.0", "@walletconnect/sign-client@^2.11.0":
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/@walletconnect/sign-client/-/sign-client-2.11.0.tgz#de10f976cc1b8ab04b7f7c27f6a298e4e083ab25"
   integrity sha512-H2ukscibBS+6WrzQWh+WyVBqO5z4F5et12JcwobdwgHnJSlqIoZxqnUYYWNCI5rUR5UKsKWaUyto4AE9N5dw4Q==
@@ -7172,6 +7172,11 @@ loglevel@^1.8.0, loglevel@^1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.8.1.tgz#5c621f83d5b48c54ae93b6156353f555963377b4"
   integrity sha512-tCRIJM51SHjAayKwC+QAg8hT8vg6z7GSgLJKGvzuPb1Wc+hLzqtuVLxp6/HzSPOozuK+8ErAhy7U/sVzw8Dgfg==
+
+lokijs@^1.5.12:
+  version "1.5.12"
+  resolved "https://registry.yarnpkg.com/lokijs/-/lokijs-1.5.12.tgz#cb55b37009bdf09ee7952a6adddd555b893653a0"
+  integrity sha512-Q5ALD6JiS6xAUWCwX3taQmgwxyveCtIIuL08+ml0nHwT3k0S/GIFJN+Hd38b1qYIMaE5X++iqsqWVksz7SYW+Q==
 
 long@^4.0.0:
   version "4.0.0"
