@@ -113,7 +113,7 @@ export default function Wallet({ account, provider }: WalletProps) {
       supportedNamespaces: {
         eip155: {
           chains: [`eip155:${mainnet.id}`, `eip155:${polygon.id}`],
-          methods: ['eth_sendTransaction', 'personal_sign', 'eth_sign', 'eth_signTypedData_v4'],
+          methods: ['eth_sendTransaction', 'personal_sign', 'eth_sign', 'eth_signTypedData_v4', 'eth_signTypedData', 'eth_signTransaction', 'eth_sendRawTransaction'],
           events: ['accountsChanged', 'chainChanged'],
           accounts: [`eip155:${mainnet.id}:${account}`, CAIP10(polygon.id, account)]
         }
