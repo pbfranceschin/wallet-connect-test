@@ -7,7 +7,7 @@ import { mainnet, sepolia, polygon } from "viem/chains";
 import { AlchemyProvider } from "@alchemy/aa-alchemy";
 import { createPublicClient, http, formatEther } from "viem";
 import { EIP155_CHAINS, EIP155_SIGNING_METHODS, TEIP155Chain } from "../utils/eip155";
-import { getSignParamsMessage } from "../utils/utils";
+import { formatParams, getSignParamsMessage } from "../utils/utils";
 import { formatJsonRpcError, formatJsonRpcResult } from "@json-rpc-tools/utils";
 
 const ALCHEMY_API_KEY = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY_SEPOLIA;
@@ -113,7 +113,7 @@ export default function Wallet({ account, provider }: WalletProps) {
       supportedNamespaces: {
         eip155: {
           chains: [`eip155:${mainnet.id}`, `eip155:${polygon.id}`],
-          methods: ['eth_sendTransaction', 'personal_sign', 'eth_sign'],
+          methods: ['eth_sendTransaction', 'personal_sign', 'eth_sign', 'eth_signTypedData_v4'],
           events: ['accountsChanged', 'chainChanged'],
           accounts: [`eip155:${mainnet.id}:${account}`, CAIP10(polygon.id, account)]
         }
@@ -128,7 +128,7 @@ export default function Wallet({ account, provider }: WalletProps) {
   }
 
   function onSessionRequest(request: SessionRequest) {
-    console.log('onSessionRequest');
+    // console.log('onSessionRequest');
     console.log('request', request);
     setSessionRequest(request);
     setOpenApproveRequest(true);
@@ -210,13 +210,14 @@ export default function Wallet({ account, provider }: WalletProps) {
         const error: ProviderRpcError = {name: "Provider Error", message: "no provider found", code: 4900, data: sessionRequest.id }
         return error;
     }
-    const { id , topic} = sessionRequest; 
+    const { id , topic } = sessionRequest; 
     let response: any;
     try {
         setIsLoading(true)
-        const { method , params } = sessionRequest.params.request;
-        const hash = await provider.request({ method, params });
-        response = formatJsonRpcResult(id, hash);
+        let { method , params } = sessionRequest.params.request;
+        params = formatParams(method, params);
+        const res = await provider.request({ method, params });
+        response = formatJsonRpcResult(id, res);
         await web3wallet?.respondSessionRequest({
             topic,
             response
