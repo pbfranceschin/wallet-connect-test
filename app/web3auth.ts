@@ -5,6 +5,15 @@ const clientId = 'BEladcxiN547-jOdKsH6udt5ghJMymep8ZtuP_p3gLRcAtjxGgp2SzDUeJKv8C
 export const createWeb3AuthSigner = async () => {
     const signer = new Web3AuthSigner({
         clientId: clientId,
+        uiConfig:{
+          appName: "Venn smart",
+          theme: {
+            primary: "pink"
+          },
+          mode: "light",
+          logoLight: "https://github.com/pbfranceschin/r-wallet-base-3/blob/main/dapp/public/logo-480.png",
+          logoDark: "https://github.com/pbfranceschin/r-wallet-base-3/blob/main/dapp/public/logo-480.png",
+        },
         chainConfig: {
           chainNamespace: "eip155"
         },
